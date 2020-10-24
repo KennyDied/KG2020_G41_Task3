@@ -40,26 +40,35 @@ public class DrawPanel extends JPanel  implements MouseListener, MouseMotionList
         gr.dispose();
         PixelDrawer pd = new BufferedImagePixelDrawer(bi);
         LineDrawer ld = new DDALineDrawer(pd);
+        PolygonDrawer dp = new DrawPolygon();
 
 
         drawLine(ld, xAxis);
         drawLine(ld, yAxis);
-        for(Line l : lines){
-            drawLine(ld, l);
-        }
+
+
+
         if(currentLine != null){
-            drawLine(ld, currentLine);
+            //drawLine(ld, currentLine);
+            drawPolygon(ld, currentLine, dp);
+        }
+        for(Line l : lines){
+            //drawLine(ld, l);
+            drawPolygon(ld, l, dp);
+
         }
 
-        PolygonDrawer dp = new DrawPolygon();
-        dp.drawPolygon(new ScreenPoint(500, 600), 200, 2000, ld);
+
+        //dp.drawPolygon(new ScreenPoint(500, 600), 200, 2000, ld);
         g.drawImage(bi,0,0,null);
     }
 
     private void drawLine(LineDrawer ld, Line l){
         ld.drawLine(sc.r2s(l.getP1()), sc.r2s(l.getP2()));
     }
-
+    private void drawPolygon(LineDrawer ld, Line l, PolygonDrawer pd){
+        pd.drawPolygon(sc.r2s(l.getP1()), sc.r2s(l.getP2()), 8, ld);
+    }
 
 
 
