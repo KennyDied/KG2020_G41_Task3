@@ -15,6 +15,11 @@ public class ScreenConverter {
         this.screenW = screenW;
         this.screenH = screenH;
     }
+    public double numberR2s(double num){
+
+        return num * Math.sqrt(Math.abs(Math.pow(screenW / w, 2) - Math.pow(screenH / h, 2)));
+
+    }
 
     public ScreenPoint r2s(RealPoint p){
         int px = (int)((p.getX() - x) * screenW / w);

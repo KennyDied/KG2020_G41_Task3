@@ -3,6 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="c7bc0b38-bc51-4ee9-8e0c-9f962432174d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/DrawPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/DrawPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/ScreenConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/ScreenConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/DrawPolygon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/DrawPolygon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/Polygon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/Polygon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/PolygonDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/PolygonDrawer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/DrawPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/ScreenConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/ScreenConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/DrawPolygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/DrawPolygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/Polygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/PolygonDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/PolygonDrawer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

@@ -9,9 +9,9 @@ public class DrawPolygon implements PolygonDrawer {
 
 
     @Override
-    public void drawPolygon(ScreenPoint center, ScreenPoint radius, int n, LineDrawer ld) {
+    public void drawPolygon(ScreenPoint center, double r, int n, LineDrawer ld) {
 
-        double r = Math.sqrt(Math.pow((radius.getX() - center.getX()), 2) + Math.pow((radius.getY() - center.getY()), 2));
+        //double r = Math.sqrt(Math.pow((radius.getX() - center.getX()), 2) + Math.pow((radius.getY() - center.getY()), 2));
 
         double da = 2 * Math.PI / n;
 
