@@ -9,6 +9,15 @@ public class Polygon {
     //private RealPoint r;       //радиус
     private int n;          //кол-во граней
     private double radius;
+    private boolean edit = false;
+
+    public boolean isEdit() {
+        return edit;
+    }
+
+    public void setEdit(boolean edit) {
+        this.edit = edit;
+    }
 
     public Polygon(RealPoint o, double radius, int n) {
         this.o = o;
@@ -41,6 +50,9 @@ public class Polygon {
 
     }
 
+    public int getN() {
+        return n;
+    }
 
     public boolean checkIfClicked(ScreenPoint sp, ScreenConverter sc){
         RealPoint rp = sc.s2r(sp);

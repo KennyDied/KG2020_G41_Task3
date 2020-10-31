@@ -17,12 +17,8 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class DrawPanel extends JPanel  implements MouseListener, MouseMotionListener, MouseWheelListener {
-    public DrawPanel() {
-        this.addMouseListener(this);
-        this.addMouseMotionListener(this);
-        this.addMouseWheelListener(this);
-    }
+public class DrawPanel extends JPanel  implements MouseListener, MouseMotionListener, MouseWheelListener, KeyListener {
+
 
     private ArrayList<Line> lines = new ArrayList<>();
     private ScreenConverter sc = new ScreenConverter(-2, 2, 4, 4, 800, 600);
@@ -31,7 +27,17 @@ public class DrawPanel extends JPanel  implements MouseListener, MouseMotionList
     private Polygon currentPolygon = null;
     private Line xAxis = new Line(0, -1, 0, 1);
     private Line yAxis = new Line(-1, 0, 1, 0);
-    //private int n = 6;
+    private int numOfSides = 0;
+
+    public DrawPanel() {
+        this.addMouseListener(this);
+        this.addMouseMotionListener(this);
+        this.addMouseWheelListener(this);
+        this.addKeyListener(this);
+
+
+    }
+
 
     @Override
     public void paint(Graphics g){
@@ -70,15 +76,21 @@ public class DrawPanel extends JPanel  implements MouseListener, MouseMotionList
     }
 
     private void drawLine(LineDrawer ld, Line l){
-        ld.drawLine(sc.r2s(l.getP1()), sc.r2s(l.getP2()));
+        ld.drawLine(sc.r2s(l.getP1()), sc.r2s(l.getP2()), new Color(0x000000));
     }
     private void drawPolygon(LineDrawer ld, Polygon p, PolygonDrawer pd){
+        Color c;
+        if (p.isEdit()){
+            c = new Color(0x55FF56);
+        } else {
+            c = new Color(0x000000);
+        }
         //System.out.println( p.getRadius());
 
         //double r = Math.sqrt(Math.pow((sc.r2s(p.getR()).getX() - sc.r2s(p.getO()).getX()), 2) + Math.pow((sc.r2s(p.getR()).getY() - sc.r2s(p.getO()).getY()), 2));
         //System.out.println(r);
         //System.out.println(r/p.getRadius());
-        pd.drawPolygon(sc.r2s(p.getO()), sc.numberR2s(p.getRadius()), 8, ld);
+        pd.drawPolygon(sc.r2s(p.getO()), sc.numberR2s(p.getRadius()), p.getN(), ld, c);
     }
 
 
@@ -91,9 +103,21 @@ public class DrawPanel extends JPanel  implements MouseListener, MouseMotionList
 
             for (Polygon p : allPolygonsList) {
                 if (p.checkIfClicked(new ScreenPoint(e.getX(), e.getY()), sc)){
+                    p.setEdit(true);
                     editPolygon = p;
                 }
             }
+        }
+        if (e.getButton() == MouseEvent.BUTTON1){
+            do {
+                String result = JOptionPane.showInputDialog(
+                        DrawPanel.this,
+                        "Введите количество сторон");
+                if (result!=null){
+                    numOfSides = Integer.parseInt(result);
+                }
+
+            }while(numOfSides <3);
         }
 
     }
@@ -109,7 +133,7 @@ public class DrawPanel extends JPanel  implements MouseListener, MouseMotionList
                 prevDrag = new ScreenPoint(e.getX(), e.getY());
             } else if (e.getButton() == MouseEvent.BUTTON1) {
                 currentLine = new Line(sc.s2r(new ScreenPoint(e.getX(), e.getY())), sc.s2r(new ScreenPoint(e.getX(), e.getY())));
-                currentPolygon = new Polygon(currentLine.getP1(), 0, 8);
+                currentPolygon = new Polygon(currentLine.getP1(), 0, numOfSides);
             }
 
         } else {
@@ -126,10 +150,14 @@ public class DrawPanel extends JPanel  implements MouseListener, MouseMotionList
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        if (editPolygon!=null){
+            editPolygon.setEdit(false);
+        }
+        editPolygon = null;
 
         if (e.getButton() == MouseEvent.BUTTON3) {
             prevDrag = null;
-            editPolygon = null;
+
             transfer = false;
         }
         else if(e.getButton() == MouseEvent.BUTTON1){
@@ -138,7 +166,7 @@ public class DrawPanel extends JPanel  implements MouseListener, MouseMotionList
             currentLine = null;
             currentPolygon = null;
             scale = false;
-            editPolygon = null;
+
 
         }
         repaint();
@@ -173,11 +201,8 @@ public class DrawPanel extends JPanel  implements MouseListener, MouseMotionList
             RealPoint zeroReal = sc.s2r(new ScreenPoint(0,0));
             RealPoint vector = new RealPoint(deltaReal.getX() - zeroReal.getX(), deltaReal.getY() - zeroReal.getY());
 
-
-
             sc.setX(sc.getX() - vector.getX());
             sc.setY(sc.getY() - vector.getY());
-
 
             prevDrag = current;
 
@@ -206,5 +231,34 @@ public class DrawPanel extends JPanel  implements MouseListener, MouseMotionList
         sc.setW(sc.getW() * scale);
         sc.setH(sc.getH() * scale);
         repaint();
+    }
+
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("delete");
+        if(editPolygon != null){
+            if(e.getKeyCode() == KeyEvent.VK_DELETE){
+                allPolygonsList.remove(editPolygon);
+                editPolygon = null;
+            }
+        }else {
+            if(e.getKeyCode() == KeyEvent.VK_DELETE){
+                allPolygonsList.clear();
+                editPolygon = null;
+            }
+        }
+        repaint();
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
