@@ -23,8 +23,6 @@ import static java.awt.Color.BLACK;
 import static java.awt.Color.black;
 
 public class DrawPanel extends JPanel implements MouseListener, MouseMotionListener, MouseWheelListener, KeyListener {
-
-
     private ArrayList<Line> lines = new ArrayList<>();
     private ScreenConverter sc = new ScreenConverter(-2, 2, 4, 4, 800, 600);
     private ArrayList<IFigure> allFiguresList = new ArrayList<>();
@@ -40,10 +38,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         this.addMouseMotionListener(this);
         this.addMouseWheelListener(this);
         this.addKeyListener(this);
-
-
     }
-
 
     @Override
     public void paint(Graphics g) {
@@ -60,23 +55,19 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
         drawLine(ld, xAxis);
         drawLine(ld, yAxis);
-        //if (numOfSides != 0) {
         if (currentFigure != null) {
             drawPolygon(currentFigure, dp);
-            //currentPolygon.draw(sc, dp, ld, Color.red);
         }
 
         for (IFigure p : allFiguresList) {
             drawPolygon(p, dp);
-            //p.draw(sc, dp, ld, Color.black);
         }
-        //}
+
         if (editFigure != null) {
 
             drawMarkers((Graphics2D) gr);
         }
 
-        //dp.drawPolygon(new ScreenPoint(500, 600), 200, 2000, ld);
         gr.dispose();
 
         g.drawImage(bi, 0, 0, null);
@@ -91,7 +82,6 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         pd.drawPolygon(p, black);
     }
 
-
     private ScreenPoint prevDrag;
 
     @Override
@@ -105,46 +95,21 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
                 }
             }
         }
-        if (e.getButton() == MouseEvent.BUTTON1) {
-            boolean isNotCorrectNumOfSides = true;
-            do {
-                String result = JOptionPane.showInputDialog(
-                        DrawPanel.this,
-                        "Введите количество сторон");
-                try {
-                    numOfSides = Integer.parseInt(result);
-                    if (numOfSides > 2) {
-                        isNotCorrectNumOfSides = false;
-
-                    } else {
-                        isNotCorrectNumOfSides = true;
-                        JOptionPane.showMessageDialog(DrawPanel.this, "Введите числов больше 2!");
-                    }
-                } catch (NumberFormatException exception) {
-                    if (result == null) {
-                        isNotCorrectNumOfSides = false;
-                        if (numOfSides < 2) {
-                            numOfSides = 0;
-                        }
-
-
-                    } else {
-                        JOptionPane.showMessageDialog(DrawPanel.this, "Некоректный ввод!");
-
-                    }
-                }
-
-
-            } while (isNotCorrectNumOfSides);
-
+        if (e.getButton() == MouseEvent.BUTTON1 && editFigure == null) {
+            dialogWindow();
         }
 
+        if (e.getButton() == MouseEvent.BUTTON1 && editFigure != null) {
+            dialogWindow();
+            editFigure = new Polygon();
+            (Polygon) editFigure.setN();
+        }
     }
-
 
     private Line currentLine = null;
     private boolean transfer = false;
     private boolean scale = false;
+    private boolean changeN = false;
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -161,30 +126,15 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
                 if (e.getButton() == MouseEvent.BUTTON3) {
                     prevDrag = new ScreenPoint(e.getX(), e.getY());
-                    transfer = true;
+                    if (clickToTranslationMarker(prevDrag, editFigure)) {
+                        transfer = true;
+                    }
                 } else if (e.getButton() == MouseEvent.BUTTON1) {
                     prevDrag = new ScreenPoint(e.getX(), e.getY());
-                    scale = true;
+                    if (clickToScaleMarkers(prevDrag, editFigure)) {
+                        scale = true;
+                    }
                 }
-
-
-//            if (editPolygon == null) {
-//                if (e.getButton() == MouseEvent.BUTTON3) {
-//                    prevDrag = new ScreenPoint(e.getX(), e.getY());
-//                } else if (e.getButton() == MouseEvent.BUTTON1) {
-//                    currentLine = new Line(sc.s2r(new ScreenPoint(e.getX(), e.getY())), sc.s2r(new ScreenPoint(e.getX(), e.getY())));
-//                    currentPolygon = new Polygon(currentLine.getP1(), 0, numOfSides);
-//                }
-//
-//            } else {
-//                if (e.getButton() == MouseEvent.BUTTON3) {
-//                    transfer = true;
-//                    //prevDrag = new ScreenPoint(e.getX(), e.getY());
-//                } else if (e.getButton() == MouseEvent.BUTTON1) {
-//                    scale = true;
-//                }
-//            }
-
             }
         }
         repaint();
@@ -212,7 +162,6 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
                     prevDrag = null;
                 }
             }
-
         }
         repaint();
     }
@@ -230,8 +179,6 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     @Override
     public void mouseDragged(MouseEvent e) {
         if (numOfSides != 0) {
-
-
             ScreenPoint current = new ScreenPoint(e.getX(), e.getY());
 
             if (editFigure == null) {
@@ -245,57 +192,19 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
                     sc.setY(sc.getY() - vector.getY());
 
                     prevDrag = current;
-
                 }
                 if (currentLine != null) {
                     currentLine.setP2(sc.s2r(current));
                     currentFigure.setRadius(countRealRadius(sc.s2r(current), currentFigure));
-                    //currentPolygon.setR(sc.s2r(current));
                 }
-
             } else {
                 if (scale) {
-                    if (clickToScaleMarkers(current, editFigure)) {
                         editFigure.setRadius(countRealRadius(sc.s2r(current), editFigure));
-                    } else {
-                        if (prevDrag != null) {
-                            ScreenPoint delta = new ScreenPoint(current.getX() - prevDrag.getX(), current.getY() - prevDrag.getY());
-                            RealPoint deltaReal = sc.s2r(delta);
-                            RealPoint zeroReal = sc.s2r(new ScreenPoint(0, 0));
-                            RealPoint vector = new RealPoint(deltaReal.getX() - zeroReal.getX(), deltaReal.getY() - zeroReal.getY());
-
-                            sc.setX(sc.getX() - vector.getX());
-                            sc.setY(sc.getY() - vector.getY());
-
-                            prevDrag = current;
-
-                        }
-                    }
                 }
-
-//
                 if (transfer) {
-                    if (clickToTranslationMarker(current, editFigure)) {
                         editFigure.transfer(sc.s2r(current));
-                    } else {
-                        if (prevDrag != null) {
-                            ScreenPoint delta = new ScreenPoint(current.getX() - prevDrag.getX(), current.getY() - prevDrag.getY());
-                            RealPoint deltaReal = sc.s2r(delta);
-                            RealPoint zeroReal = sc.s2r(new ScreenPoint(0, 0));
-                            RealPoint vector = new RealPoint(deltaReal.getX() - zeroReal.getX(), deltaReal.getY() - zeroReal.getY());
-
-                            sc.setX(sc.getX() - vector.getX());
-                            sc.setY(sc.getY() - vector.getY());
-
-                            prevDrag = current;
-
-                        }
-                    }
                 }
-
             }
-
-
         }
         repaint();
     }
@@ -338,7 +247,6 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
             }
         }
         repaint();
-
     }
 
     @Override
@@ -346,8 +254,8 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
     }
 
-    private boolean clickToScaleMarkers(ScreenPoint click, IFigure f) {
-        List<RealPoint> markers = editFigure.getMarkers();
+    private boolean clickToScaleMarkers(ScreenPoint click, IFigure f) {     //боковые - размер
+        List<RealPoint> markers = f.getMarkers();
         for (RealPoint mark : markers) {
             if ((sc.r2s(mark).getX() - getWidth() / (30 * 2)) < click.getX() && (sc.r2s(mark).getX() + getWidth() / (30) > click.getX()
                     && sc.r2s(mark).getY() - getHeight() / (30 * 2) < click.getY() && sc.r2s(mark).getY() + getHeight() / (30) > click.getY())) {
@@ -357,7 +265,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         return false;
     }
 
-    private boolean clickToTranslationMarker(ScreenPoint click, IFigure f) {
+    private boolean clickToTranslationMarker(ScreenPoint click, IFigure f) {    //центр - перемещение
         return (sc.r2s(f.getCenter()).getX() - getWidth() / (30 * 2)) < click.getX() && (sc.r2s(f.getCenter()).getX() + getWidth() / (30) > click.getX()
                 && sc.r2s(f.getCenter()).getY() - getHeight() / (30 * 2) < click.getY() && sc.r2s(f.getCenter()).getY() + getHeight() / (30) > click.getY());
     }
@@ -375,12 +283,34 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         }
 
         gr2.fillRect(sc.r2s(editFigure.getCenter()).getX() - getWidth() / (30 * 2), sc.r2s(editFigure.getCenter()).getY() - getHeight() / (30 * 2), getWidth() / 30, getHeight() / 30);
-
     }
 
-    private void drawArrow(RealPoint rp, Graphics2D gr2){
-        ScreenPoint sp = sc.r2s(rp);
-        gr2.setColor(BLACK);
-        //gr2.drawLine();
+
+    private void dialogWindow(){
+        boolean isNotCorrectNumOfSides = true;
+        do {
+            String result = JOptionPane.showInputDialog(
+                    DrawPanel.this,
+                    "Введите количество сторон");
+            try {
+                numOfSides = Integer.parseInt(result);
+                if (numOfSides > 2) {
+                    isNotCorrectNumOfSides = false;
+
+                } else {
+                    isNotCorrectNumOfSides = true;
+                    JOptionPane.showMessageDialog(DrawPanel.this, "Введите число больше 2!");
+                }
+            } catch (NumberFormatException exception) {
+                if (result == null) {
+                    isNotCorrectNumOfSides = false;
+                    if (numOfSides < 2) {
+                        numOfSides = 0;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(DrawPanel.this, "Некоректный ввод!");
+                }
+            }
+        } while (isNotCorrectNumOfSides);
     }
 }

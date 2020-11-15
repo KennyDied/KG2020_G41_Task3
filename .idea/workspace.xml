@@ -20,18 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7bc0b38-bc51-4ee9-8e0c-9f962432174d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/IFigure/IFigure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/META-INF/Task3_demo.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/DrawPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/DrawPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/DrawPolygon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/DrawPolygon.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/Polygon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/Polygon.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/PolygonDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/PolygonDrawer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/DrawPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/DrawPolygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/DrawPolygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/Figure.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/Polygon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/PolygonDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/PolygonDrawer.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,13 +59,25 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="ru.vsu.cs.kg2020.danila" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Данила\Desktop\KG2020_G41_Task3\src\ru\vsu\cs\kg2020\danila\line" />
       <recent name="C:\Users\Данила\Desktop\Task3_demo\src\ru\vsu\cs\kg2020\danila" />
     </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="ru.vsu.cs.kg2020.danila" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -101,12 +114,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2685" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1604922457547">
