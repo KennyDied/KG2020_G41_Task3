@@ -91,7 +91,6 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
             for (IFigure p : allFiguresList) {
                 if (p.checkIfClicked(sc.s2r(new ScreenPoint(e.getX(), e.getY())))) {
                     editFigure = p;
-
                 }
             }
         }
@@ -99,11 +98,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
             dialogWindow();
         }
 
-        if (e.getButton() == MouseEvent.BUTTON1 && editFigure != null) {
-            dialogWindow();
-            editFigure = new Polygon();
-            (Polygon) editFigure.setN();
-        }
+
     }
 
     private Line currentLine = null;
@@ -117,7 +112,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
             if (editFigure == null) {
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     currentLine = new Line(sc.s2r(new ScreenPoint(e.getX(), e.getY())), sc.s2r(new ScreenPoint(e.getX(), e.getY())));
-                    currentFigure = new Polygon(currentLine.getP1(), 0, numOfSides);
+                    currentFigure = new Polygon(currentLine.getP1(), 0, numOfSides, 0);
 
                 } else if (e.getButton() == MouseEvent.BUTTON3) {
                     prevDrag = new ScreenPoint(e.getX(), e.getY());
@@ -149,6 +144,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
                 scale = false;
                 transfer = false;
                 prevDrag = null;
+                rotate = false;
             } else {
                 if (e.getButton() == MouseEvent.BUTTON3) {
                     prevDrag = null;
@@ -195,18 +191,48 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
                 }
                 if (currentLine != null) {
                     currentLine.setP2(sc.s2r(current));
-                    currentFigure.setRadius(countRealRadius(sc.s2r(current), currentFigure));
+                    currentFigure.setP2(sc.s2r(current));
+                    //currentFigure.setRadius(countRealRadius(sc.s2r(current), currentFigure));
                 }
             } else {
                 if (scale) {
-                        editFigure.setRadius(countRealRadius(sc.s2r(current), editFigure));
+                    if (rotate) {
+//                        double fi = 0;
+//                        ScreenPoint center = sc.r2s(editFigure.getCenter());
+//                        //смотрим в какую сторону мы переместились и  как бы добавляем это приращение fi
+//                        //если брать косинус угла между векторами, то он во первых слишком большой, во вторых угол косинуса будет лежать 0 до 180 градусов
+//                        if (e.getY() - prevDrag.getY() > 0 && center.getX() < e.getX()) {
+//                            fi = -0.0001;
+//                        } else if (e.getY() - prevDrag.getY() < 0 && center.getX() < e.getX()) {
+//                            fi = 0.0001;
+//                        } else if (e.getY() - prevDrag.getY() > 0 && center.getX() > e.getX()) {
+//                            fi = 0.0001;
+//                        } else if (e.getY() - prevDrag.getY() < 0 && center.getX() > e.getX()) {
+//                            fi = -0.0001;
+//                        }
+
+                        editFigure.rotate(angle(sc.s2r(current)));
+                        editFigure.scale(countRealRadius(sc.s2r(current), editFigure));
+
+                    } else {
+                        editFigure.scale(countRealRadius(sc.s2r(current), editFigure));
+
+                    }
+
+                    //editFigure.rotate(sc.s2r(prevDrag), sc.s2r(current));
+                    //editFigure.setRadius(countRealRadius(sc.s2r(current), editFigure));
                 }
                 if (transfer) {
-                        editFigure.transfer(sc.s2r(current));
+                    editFigure.transfer(sc.s2r(current));
                 }
+
             }
         }
         repaint();
+    }
+
+    private double angle(RealPoint to){
+        return Math.atan2(to.getY(), to.getX());
     }
 
     @Override
@@ -233,6 +259,8 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
     }
 
+    private boolean rotate = false;
+
     @Override
     public void keyPressed(KeyEvent e) {
         if (editFigure != null) {
@@ -240,6 +268,17 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
                 allFiguresList.remove(editFigure);
                 editFigure = null;
             }
+
+            if (e.getKeyCode() == KeyEvent.VK_E) {
+                dialogWindow();
+                editFigure.setNumOfAngle(numOfSides);
+            }
+
+            if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
+                rotate = !rotate;
+            }
+
+
         } else {
             if (e.getKeyCode() == KeyEvent.VK_DELETE) {
                 allFiguresList.clear();
@@ -249,8 +288,10 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         repaint();
     }
 
+
     @Override
     public void keyReleased(KeyEvent e) {
+
 
     }
 
@@ -286,7 +327,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     }
 
 
-    private void dialogWindow(){
+    private void dialogWindow() {
         boolean isNotCorrectNumOfSides = true;
         do {
             String result = JOptionPane.showInputDialog(

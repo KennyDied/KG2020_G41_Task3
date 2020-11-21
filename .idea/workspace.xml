@@ -22,15 +22,10 @@
     <list default="true" id="c7bc0b38-bc51-4ee9-8e0c-9f962432174d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/DrawPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/DrawPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/DrawPolygon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/DrawPolygon.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/Polygon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task3_demo/ru/vsu/cs/kg2020/danila/polygon/Polygon.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/DrawPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/DrawPolygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/DrawPolygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/Figure.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/IFigure/IFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/IFigure/IFigure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/PolygonDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/kg2020/danila/polygon/PolygonDrawer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -123,34 +118,39 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="2685" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1604922457547">
+    <state x="2685" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1605905775192">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2685" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1604922457547" />
+    <state x="2685" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605905775192" />
+    <state x="473" y="134" key="#com.intellij.ide.util.MemberChooser/0.0.1187.720@0.0.1187.720" timestamp="1605790355396" />
     <state x="2610" y="267" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1604776870725">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2610" y="267" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1604776870725" />
-    <state width="1144" height="132" key="GridCell.Tab.0.bottom" timestamp="1605285080224">
+    <state width="1143" height="2" key="GridCell.Tab.0.bottom" timestamp="1605949458219">
       <screen x="0" y="0" width="1187" height="720" />
     </state>
     <state width="1144" height="132" key="GridCell.Tab.0.bottom/0.0.1187.720/1920.0.1920.1040@0.0.1187.720" timestamp="1605285080224" />
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1604948333740" />
-    <state width="1144" height="132" key="GridCell.Tab.0.center" timestamp="1605285080224">
+    <state width="1877" height="215" key="GridCell.Tab.0.bottom/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605914762422" />
+    <state width="1143" height="2" key="GridCell.Tab.0.bottom/0.0.1187.720@0.0.1187.720" timestamp="1605949458219" />
+    <state width="1143" height="2" key="GridCell.Tab.0.center" timestamp="1605949458219">
       <screen x="0" y="0" width="1187" height="720" />
     </state>
     <state width="1144" height="132" key="GridCell.Tab.0.center/0.0.1187.720/1920.0.1920.1040@0.0.1187.720" timestamp="1605285080224" />
-    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1604948333740" />
-    <state width="1144" height="132" key="GridCell.Tab.0.left" timestamp="1605285080224">
+    <state width="1877" height="215" key="GridCell.Tab.0.center/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605914762422" />
+    <state width="1143" height="2" key="GridCell.Tab.0.center/0.0.1187.720@0.0.1187.720" timestamp="1605949458219" />
+    <state width="1143" height="2" key="GridCell.Tab.0.left" timestamp="1605949458219">
       <screen x="0" y="0" width="1187" height="720" />
     </state>
     <state width="1144" height="132" key="GridCell.Tab.0.left/0.0.1187.720/1920.0.1920.1040@0.0.1187.720" timestamp="1605285080224" />
-    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1604948333740" />
-    <state width="1144" height="132" key="GridCell.Tab.0.right" timestamp="1605285080224">
+    <state width="1877" height="215" key="GridCell.Tab.0.left/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605914762422" />
+    <state width="1143" height="2" key="GridCell.Tab.0.left/0.0.1187.720@0.0.1187.720" timestamp="1605949458219" />
+    <state width="1143" height="2" key="GridCell.Tab.0.right" timestamp="1605949458219">
       <screen x="0" y="0" width="1187" height="720" />
     </state>
     <state width="1144" height="132" key="GridCell.Tab.0.right/0.0.1187.720/1920.0.1920.1040@0.0.1187.720" timestamp="1605285080224" />
-    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1604948333740" />
+    <state width="1877" height="215" key="GridCell.Tab.0.right/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605914762422" />
+    <state width="1143" height="2" key="GridCell.Tab.0.right/0.0.1187.720@0.0.1187.720" timestamp="1605949458219" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1604944044269">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -171,13 +171,15 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2611" y="277" key="refactoring.ChangeSignatureDialog/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1604777057469" />
-    <state x="2536" y="240" key="run.anything.popup" timestamp="1604925907077">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="381" y="166" key="run.anything.popup" timestamp="1605462089485">
+      <screen x="0" y="0" width="1187" height="720" />
     </state>
     <state x="2536" y="240" key="run.anything.popup/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1604925907077" />
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604946771154">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="381" y="166" key="run.anything.popup/0.0.1187.720@0.0.1187.720" timestamp="1605462089485" />
+    <state x="385" y="156" width="672" height="470" key="search.everywhere.popup" timestamp="1605792061859">
+      <screen x="0" y="0" width="1187" height="720" />
     </state>
     <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1187.720/1920.0.1920.1040@1920.0.1920.1040" timestamp="1604946771154" />
+    <state x="385" y="156" width="672" height="470" key="search.everywhere.popup/0.0.1187.720@0.0.1187.720" timestamp="1605792061859" />
   </component>
 </project>
